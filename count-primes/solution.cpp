@@ -33,17 +33,44 @@ using namespace std;
 
 /*Optimized second loop running time using the Trial Division algorithm*/
 
+// class Solution
+// {
+// public:
+//     int countPrimes(int n)
+//     {
+//         vector<int> primes;
+
+//         for (int i = 2; i < n; i++)
+//         {
+//             bool isPrime = true;
+//             for (int j = 2; j * j <= i; j++)
+//             {
+//                 if (i % j == 0)
+//                 {
+//                     isPrime = false;
+//                     break;
+//                 }
+//             }
+//             if (isPrime)
+//                 primes.push_back(i);
+//         }
+
+//         return primes.size();
+//     }
+// };
+
+
 class Solution
 {
 public:
     int countPrimes(int n)
     {
-        vector<int> primes;
 
-        for (int i = 2; i < n; i++)
+        int count = (n > 2) ? 1 : 0;
+        for (int i = 3; i < n; i += 2)
         {
             bool isPrime = true;
-            for (int j = 2; j * j <= i; j++)
+            for (int j = 3; j * j <= i; j += 2)
             {
                 if (i % j == 0)
                 {
@@ -51,11 +78,10 @@ public:
                     break;
                 }
             }
-            if (isPrime)
-                primes.push_back(i);
+            if (isPrime) count++;
         }
 
-        return primes.size();
+        return count;
     }
 };
 
